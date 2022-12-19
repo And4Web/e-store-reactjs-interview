@@ -1,5 +1,6 @@
 import React from "react";
 import './header.scss';
+import TopMenu from "../topMenu";
 
 function Header() {
   return (
@@ -7,14 +8,14 @@ function Header() {
       <header className="header">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-xs-3 col-lg-2">
+            <div className="col-xl-3 col-lg-2">
               <div className="header_logo">
                 <font>e-Store</font>
               </div>
             </div>
-            <div className="d-flex flex-row justify-content-center align-item-center p-1">
-              <div className="col-xl-6 col-lg-7">
-                <div className="input-group">
+
+            <div className="col-xl-6 col-lg-7">              
+                <div className="input-group mt-3">
                   <div className="input-group-prepend">
                     <select
                       name=""
@@ -27,18 +28,21 @@ function Header() {
                       <option value="">Kids</option>
                     </select>
                   </div>
+
                   <input type="text" className="form-control" />
+
                   <div className="input-group-append">
                     <button className="btn btn-success">
                       <i className="fa fa-search"></i>
                     </button>
-                  </div>
-                </div>
+                  </div>    
+
               </div>
-              <div className="col-xl-6 col-lg-7">
+
+              <div className="col-xl-3 col-lg-3">
                 <div className="header_right">
                   <div className="widgets">
-                    <ul>
+                    <ul >
                       <li>
                         <i className="fa fa-heart"></i>
                       </li>
@@ -47,17 +51,20 @@ function Header() {
                       </li>
                     </ul>
                   </div>
+
                   <div className="auth">
                     <a href="#">Login</a>
                     <span style={{ color: "white" }}>/</span>
                     <a href="#">Register</a>
                   </div>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
       </header>
+      <TopMenu/>
     </>
   );
 }
