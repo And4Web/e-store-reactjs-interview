@@ -23,7 +23,7 @@
         list-style: none;
         display: inline-block;
         position: relative;
-        opacity: 0;
+        opacity: 1;
         margin-right: 10px;
         top:100px;
         &:nth-child(1){
@@ -46,8 +46,8 @@
             display: block;
             background: rgb(82, 80, 80);
             border-radius: 50%;
-            height:45px;
-            width:45px;
+            height:48px;
+            width:48px;
             line-height:48px;
             color:#111111;
             @include transition(all 0.5s);

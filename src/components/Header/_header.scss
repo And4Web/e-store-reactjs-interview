@@ -61,7 +61,7 @@ $my-color:rgb(250, 245, 245);
       list-style: none;
       display: inline-block;
       font-size: 18px;
-      color: #111111;
+      color: #fff;
       margin-right: 20px;
       cursor: pointer;
   
@@ -92,11 +92,11 @@ $my-color:rgb(250, 245, 245);
     }
   }
 
-  a::after{
-    position:absolute;
-    content: "/";
-    right:-8px 
-  }
+  // a::after{
+  //   position:absolute;
+  //   content: "/";
+  //   right:-8px 
+  // }
   
   // a:last-child::after{
   //   display: none;
@@ -106,6 +106,7 @@ $my-color:rgb(250, 245, 245);
     display: inline-block;
   
   }
+
   li{
     list-style: none;
     display: inline-block;

@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../Sidebar";
 import Product from "../Product";
-import "./_maincontainer.scss";
+import "../MainContainer/_maincontainer.scss";
 
 class MainContainer extends React.Component{
     render(){

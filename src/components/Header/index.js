@@ -1,4 +1,5 @@
 import React from "react";
+import TopMenu from "../TopMenu"
 import "./_header.scss"
 const Header = () => (
   <>
@@ -35,11 +36,11 @@ const Header = () => (
           </div>
           <div className="col-lg-3">
             <div className="header__right">
-              <div className="auth">
-                <a href="#">Sign-in/</a>
+              <div className="header__right__auth">
+                <a href="#">Sign-in</a>
                 <a href="#">Sign-up</a>
               </div>
-              <ul className="widget">
+              <ul className="header__right__widget">
                 <li><i className="fa fa-heart"></i> </li>
                 <li><i className="fa fa-shopping-cart"></i> </li>
               </ul>
@@ -49,7 +50,7 @@ const Header = () => (
         </div>
       </div>
     </header>
-    
+    <TopMenu/>
   </>
 )
 
