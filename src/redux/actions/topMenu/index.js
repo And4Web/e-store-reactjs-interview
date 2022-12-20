@@ -1,10 +1,8 @@
-let topMenuData = ['Men', 'Women', 'Best Sellers'];
+export const getTopMenu = ()=>{
 
-const getTopMenu = () => {
-  return {
-    type: 'TopMenu',
-    data: topMenuData,
-  }
+    return {
+        type :'Menu',
+        data :['Home','Kids','Accessories']
+    }
+
 }
-
-export default getTopMenu
