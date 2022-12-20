@@ -1,9 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import "../TopMenu/_topmenu.scss";
+import  getTopMenu  from '../../redux/actions/topMenu';
 
-const menu=['Home','Women','Men','Kids','Best Seller'];
+// const menu=['Home','Women','Men','Kids','Best Seller'];
 
-const TopMenu=()=>(
+const TopMenu = (props) => {
+    // console.log(props)
+    const {topMenu} = props.state;
+    return(
     <>
     <header className="menuHeader">
         <div className="container-fluid">
@@ -11,7 +16,7 @@ const TopMenu=()=>(
                 <div className="col-xl-12 col-lg-12">
                     <nav className="menu">
                         <ul>
-                            {menu.map((item,index)=>(
+                            {topMenu.map((item,index)=>(
                                 <li key={index}>
                                 <a href="#">{item}</a>
                             </li>
@@ -25,5 +30,17 @@ const TopMenu=()=>(
     </header>
     </>
 )
+}
 
-export default TopMenu;
+let mapStateToProps = (state) => {
+    return {
+        state
+    }
+}
+let mapDispatchToProps = (dispatch) => {
+    return {
+        getMenu: dispatch(getTopMenu()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopMenu);
