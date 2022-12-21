@@ -7,8 +7,8 @@ const productsRoutes = require('./Routes/productsRoutes')
 
 const PORT = 5000;
 
-app.use(express.json());
-app.use(cors);
+// app.use(express.json());
+// app.use(cors);
 
 app.get('/', (req, res)=>{
   res.status(200).send('hello');

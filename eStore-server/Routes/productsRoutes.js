@@ -1,12 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.route('/getProducts').get((req, res)=>{
-  let appData = {
-    isError: false,
-    data: []
-  }
-  res.status(200).json(appData);
-})
+const {getProductsControllers} = require('../Controllers/productsController')
+
+router.route('/get-products').get(getProductsControllers)
 
 module.exports = router;
