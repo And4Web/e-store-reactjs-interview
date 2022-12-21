@@ -19,7 +19,6 @@ const Product = () => {
         dispatch(actions.getProducts());
     }, [])
 
-    
     return (
         <div className="row">
             {products.map((item, index) => (

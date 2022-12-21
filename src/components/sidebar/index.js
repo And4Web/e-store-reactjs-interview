@@ -6,13 +6,12 @@ import "./_sidebar.scss";
 const Sidebar = () => {
 
     const dispatch = useDispatch();
-    const { product } = useSelector((obj) => obj);
+    const { product: {categories} } = useSelector((obj) => obj);
 
     useEffect(() => {
         dispatch(actions.getProductCategories());
     }, [])
 
-    console.log("CATEGORIES : ", product);
     return (
         <div>
             <div className="sidebar_category">
@@ -20,7 +19,7 @@ const Sidebar = () => {
                     <h4>Categories</h4>
                 </div>
                 {
-                    product.categories.map((item, index) => {
+                    categories.map((item, index) => {
 
                         return (
                             <div className="category_accordian" key={index}>
