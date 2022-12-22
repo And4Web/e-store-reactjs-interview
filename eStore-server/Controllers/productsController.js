@@ -11,7 +11,7 @@ exports.getProductsControllers = (req, res) => {
       appData.data = err;
       return res.status(500).json(appData);
     } else {
-      connection.query('select * from categories', (err, rows)=>{
+      database.connection.query('select * from categories', (err, rows)=>{
         if(err){
           appData.isError = true;
           appData.data = err;
