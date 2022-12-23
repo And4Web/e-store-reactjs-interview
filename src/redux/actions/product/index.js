@@ -1,4 +1,5 @@
 import * as actionTypes from "./types";
+import axios from 'axios';
 
 const productCategories = [
     {
@@ -49,9 +50,28 @@ const product = [
 ]
 
 export const getProductCategories = () => async (dispatch) => {
+    let tempCategories = [];
+    await axios({
+        method: 'get',
+        url: 'http://localhost:5000/api/products/get-products'
+    }).then(res=>{
+        console.log('RESPONSE FROM API: ', res.data)
+
+        
+        res.data.data.map(item=>{
+            let t = {
+                Id: item.id,
+                Category: item.category,
+                SubCategory: [] 
+            }
+            return tempCategories.push(t);
+        })
+    });
+
     dispatch({
         type: actionTypes.PRODUCT_CATEGORY,
-        data: productCategories
+        // data: productCategories
+        data: tempCategories
     })
 }
 
