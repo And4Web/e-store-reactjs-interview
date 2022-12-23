@@ -56,13 +56,18 @@ export const getProductCategories = () => async (dispatch) => {
         url: 'http://localhost:5000/api/products/get-products'
     }).then(res=>{
         console.log('RESPONSE FROM API: ', res.data)
+        let parentCat = res.data.data.filter(item=>item.parentcategoryid === null);
 
-        
-        res.data.data.map(item=>{
+        parentCat.map(cat=>{
             let t = {
-                Id: item.id,
-                Category: item.category,
-                SubCategory: [] 
+                Id: cat.id,
+                Category: cat.category,
+                SubCategory: res.data.data.filter(item=>item.parentcategoryid === cat.id).map(subCat=>{
+                    return {
+                        Id: subCat.id,
+                        Name: subCat.category
+                    }
+                })
             }
             return tempCategories.push(t);
         })
