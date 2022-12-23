@@ -32,26 +32,26 @@ const productCategories = [
   },
 ];
 
-const product = [
-  {
-    Id: 1,
-    imageSrc: require("../../../assets/img/shop/shop-1.jpg"),
-    name: "Product 1",
-    price: "$10.00",
-  },
-  {
-    Id: 2,
-    imageSrc: require("../../../assets/img/shop/shop-2.jpg"),
-    name: "Product 2",
-    price: "$20.00",
-  },
-  {
-    Id: 3,
-    imageSrc: require("../../../assets/img/shop/shop-3.jpg"),
-    name: "Product 3",
-    price: "$25.00",
-  },
-];
+// const product = [
+//   {
+//     Id: 1,
+//     imageSrc: require("../../../assets/img/shop/shop-1.jpg"),
+//     name: "Product 1",
+//     price: "$10.00",
+//   },
+//   {
+//     Id: 2,
+//     imageSrc: require("../../../assets/img/shop/shop-2.jpg"),
+//     name: "Product 2",
+//     price: "$20.00",
+//   },
+//   {
+//     Id: 3,
+//     imageSrc: require("../../../assets/img/shop/shop-3.jpg"),
+//     name: "Product 3",
+//     price: "$25.00",
+//   },
+// ];
 
 export const getProductCategories = () => async (dispatch) => {
   let tempCategories = [];
@@ -79,6 +79,8 @@ export const getProductCategories = () => async (dispatch) => {
       };
       return tempCategories.push(t);
     });
+  }).catch(err=>{
+    console.log("Error getting Categories from server:", err.message);
   });
 
   dispatch({
@@ -100,12 +102,14 @@ export const getProducts = () => async (dispatch) => {
     tempProduct = data.map((item) => {
       return {
         Id: item.id,
-        imageSrc: require(`../../../assets/${item.productimg}`),
+        imageSrc: `http://localhost:5000/${item.productimg}`,
         name: item.productname,
         price: item.price,
       };
     });
     
+  }).catch(err=>{
+    console.log("Error getting Products from server:", err.message);
   });
 
   dispatch({
