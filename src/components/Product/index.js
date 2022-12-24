@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import * as actions from "../../redux/actions/product";
+import * as productActions from "../../redux/actions/product";
+import * as cartActions from "../../redux/actions/cart"
 import "./_product.scss";
 
 // const products = [
@@ -16,8 +17,13 @@ const Product = () => {
     const { product: { products } } = useSelector((obj) => obj);
 
     useEffect(() => {
-        dispatch(actions.getProducts());
+        dispatch(productActions.getProducts());
     }, [])
+
+    const addToCart = (item) => {
+        // console.log(item);
+        dispatch(cartActions.addToCart());
+    }
 
     return (
         <div className="row">
@@ -33,7 +39,7 @@ const Product = () => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href={null}>
+                                    <a href={null} onClick={()=>addToCart(item)}>
                                         <span className="fa fa-shopping-cart" />
                                     </a>
                                 </li>
