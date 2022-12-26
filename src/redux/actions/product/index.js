@@ -53,7 +53,7 @@ export const getProductCategories = () => async (dispatch) => {
     let tempCat = [];
     await axios({
         method: "get",
-        url: "http://localhost:5000/product/api/getCategories"
+        url: "http://localhost:5000/api/products/get-categories"
     }).then((res) => {
         console.log("RESPONSE FROM API", res.data);
 
@@ -92,7 +92,7 @@ export const getProducts = () => async (dispatch) => {
 
     await axios({
         method: 'get',
-        url: 'http://localhost:5000/product/api/getProducts'
+        url: 'http://localhost:5000/api/products/get-products'
     }).then(res => {
 
         try {

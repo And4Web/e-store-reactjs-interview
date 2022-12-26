@@ -63,7 +63,7 @@ const Product = () => {
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />
                             </div>
-                            <div className="product__price">{item.price}</div>
+                            <div className="product__price">${item.price}</div>
                         </div>
                     </div>
                 </div>
