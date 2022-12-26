@@ -53,16 +53,15 @@
             width:48px;
             line-height:48px;
             color:#111111;
-            cursor: pointer;
             @include transition(all 0.5s);
 
             span{
                 position: relative;
                 display: inline-block;
-
+                
                 -webkit-transform: rotate(0);
                 transform: rotate(0);
-                @include transition(all, 0.5s);                
+                @include transition(all,0.5s);
             }
         }
     }

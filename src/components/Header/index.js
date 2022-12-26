@@ -1,7 +1,12 @@
 import React from "react";
+import {useSelector} from "react-redux";
 import TopMenu from "../TopMenu"
 import "./_header.scss"
-const Header = () => (
+const Header = () =>{ 
+  
+  const {cart} = useSelector(obj=>obj);
+  return (
+  
   <>
     <header className="header">
       <div className="container-fluid">
@@ -42,7 +47,10 @@ const Header = () => (
               </div>
               <ul className="header__right__widget">
                 <li><i className="fa fa-heart"></i> </li>
-                <li><i className="fa fa-shopping-cart"></i> </li>
+                <li><i className="fa fa-shopping-cart">
+                  {cart.item.length>0 && 
+                    <div className="tip">{cart.item.length}</div>}
+                  </i> </li>
               </ul>
             </div>
           </div>
@@ -52,6 +60,6 @@ const Header = () => (
     </header>
     <TopMenu/>
   </>
-)
+)}
 
 export default Header;

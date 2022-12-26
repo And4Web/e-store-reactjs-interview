@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import * as productActions from "../../redux/actions/product";
-import * as cartActions from "../../redux/actions/cart"
+import * as actions from "../../redux/actions";
+
 import "./_product.scss";
 
 // const products = [
@@ -14,17 +14,24 @@ import "./_product.scss";
 
 const Product = () => {
     const dispatch = useDispatch();
-    const { product: { products } } = useSelector((obj) => obj);
+    const { product: { products },cart } = useSelector((obj) => obj);
 
     useEffect(() => {
-        dispatch(productActions.getProducts());
+        dispatch(actions.getProducts());
     }, [])
 
-    const addToCart = (item) => {
-        // console.log(item);
-        dispatch(cartActions.addToCart());
+    useEffect(()=>{
+        console.log("FROM REDUCER",cart);
+    },[cart])
+
+
+   const addCartItem = (item) => {
+
+        console.log(item);
+        dispatch(actions.addCartItem(item));
     }
 
+    
     return (
         <div className="row">
             {products.map((item, index) => (
@@ -39,7 +46,7 @@ const Product = () => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href={null} onClick={()=>addToCart(item)}>
+                                    <a href={null} onClick={()=>addCartItem(item)}>
                                         <span className="fa fa-shopping-cart" />
                                     </a>
                                 </li>
@@ -56,7 +63,7 @@ const Product = () => {
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />
                             </div>
-                            <div className="product__price">${item.price}</div>
+                            <div className="product__price">{item.price}</div>
                         </div>
                     </div>
                 </div>
