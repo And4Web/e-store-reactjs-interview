@@ -99,13 +99,15 @@ export const getProducts = () => async (dispatch) => {
             let productList = res.data.data.map(item => {
                 return {
                     Id: item.id,
-                    imageSrc:`http://localhost:5000/${item.productimg}`,
+                    categoryId: item.categoryid,
+                    imageSrc: `http://localhost:5000/${item.productimg}`,
                     name: item.productname,
                     price: item.price
+
                 }
             })
             dispatch(_getProducts(productList));
-
+            dispatch(_getFilteredProducts(productList));
         }
         catch (ex) {
             console.log(ex);
@@ -123,9 +125,52 @@ export const getProducts = () => async (dispatch) => {
     // })
 }
 
-export const _getProducts=(data)=>{
+export const _getProducts = (data) => {
     return {
-        type:actionTypes.PRODUCT,
+        type: actionTypes.PRODUCT,
         data
     }
+}
+
+export const _getFilteredProducts = (data) => {
+    return {
+        type: actionTypes.FILTER_PRODUCT,
+        data
+    }
+}
+
+export const applyFilter = (param, data) => async (dispatch) => {
+
+    let query = buildQuery(param);
+    console.log("Build Query", query);
+    
+    let filteredData = filterData(data.products,query);
+    dispatch(_getFilteredProducts(filteredData));
+
+}
+
+const buildQuery = (filter) => {
+    let query = {};
+    for (let keys in filter) {
+        query[keys] = filter[keys];
+    }
+    return query;
+}
+
+
+const filterData=(data,query)=>{
+
+    const filteredData = data.filter(item=>{
+            for(let keys in query){
+
+                if(query[keys]===undefined) return false;
+                else if(!query[keys].includes(item[keys])) return false;
+
+            }
+            return true;
+
+    });
+
+    return filteredData;
+
 }
