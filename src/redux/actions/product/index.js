@@ -60,8 +60,6 @@ export const getProductCategories = () => async (dispatch) => {
         let parentCat = res.data.data
             .filter(x => x.parentcategoryid === null);
 
-
-
         parentCat.map((item) => {
             let t = {
                 Id: item.id,
