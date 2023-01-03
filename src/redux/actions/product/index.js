@@ -158,7 +158,6 @@ const buildQuery = (filter) => {
     return query;
 }
 
-
 const filterData = (data, query) => {
     const keysHavingMinMax = ['price']
 
