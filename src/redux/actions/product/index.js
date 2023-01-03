@@ -1,6 +1,7 @@
 import * as actionTypes from "./types";
 import axios from "axios";
 
+/*
 const productCategories = [
     {
         Id: 1,
@@ -48,6 +49,7 @@ const product = [
         price: '$25.00'
     }
 ]
+*/
 
 export const getProductCategories = () => async (dispatch) => {
     let tempCat = [];
