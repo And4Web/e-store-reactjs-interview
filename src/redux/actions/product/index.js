@@ -1,7 +1,7 @@
 import * as actionTypes from "./types";
 import axios from "axios";
 
-/*const productCategories = [
+const productCategories = [
     {
         Id: 1,
         Category: 'Kids',
@@ -48,7 +48,6 @@ const product = [
         price: '$25.00'
     }
 ]
-*/
 
 export const getProductCategories = () => async (dispatch) => {
     let tempCat = [];
@@ -157,6 +156,7 @@ const buildQuery = (filter) => {
     }
     return query;
 }
+
 
 const filterData = (data, query) => {
     const keysHavingMinMax = ['price']

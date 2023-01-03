@@ -1,14 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import MainContainer from "./components/MainContainer";
 import './App.css';
+import LandingPage from './components';
+import ProductDetails from './components/Product/productDetails';
 
 function App() {
   return (
     <>
       <Header />
-      <MainContainer />
+      <section>
+        <Routes>
+          <Route exact path="/" element={<LandingPage/>} />
+          <Route exact path="/productdetails" element={<ProductDetails/>} />
+        </Routes>
+      </section>
     </>
   );
 }

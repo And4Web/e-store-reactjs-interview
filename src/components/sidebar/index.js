@@ -103,7 +103,7 @@ const Sidebar = () => {
                     <h4>Shop by price</h4>
                 </div>
                 <div>
-                    {`Price : $${filter?.price?.min || 0}-$${filter?.price?.max || 150}`}
+                    {`Price : $${filter?.price?.min || 0}-$${filter?.price?.max || 0}`}
                     <div>
                         <p>
                             {`Min: `}
