@@ -1,7 +1,7 @@
 import * as actionTypes from "./types";
 import axios from "axios";
 
-const productCategories = [
+/*const productCategories = [
     {
         Id: 1,
         Category: 'Kids',
@@ -48,6 +48,7 @@ const product = [
         price: '$25.00'
     }
 ]
+*/
 
 export const getProductCategories = () => async (dispatch) => {
     let tempCat = [];
@@ -59,6 +60,8 @@ export const getProductCategories = () => async (dispatch) => {
 
         let parentCat = res.data.data
             .filter(x => x.parentcategoryid === null);
+
+
 
         parentCat.map((item) => {
             let t = {
@@ -141,8 +144,8 @@ export const applyFilter = (param, data) => async (dispatch) => {
 
     let query = buildQuery(param);
     console.log("Build Query", query);
-    
-    let filteredData = filterData(data.products,query);
+
+    let filteredData = filterData(data.products, query);
     dispatch(_getFilteredProducts(filteredData));
 
 }
@@ -156,16 +159,25 @@ const buildQuery = (filter) => {
 }
 
 
-const filterData=(data,query)=>{
+const filterData = (data, query) => {
+    const keysHavingMinMax = ['price']
 
-    const filteredData = data.filter(item=>{
-            for(let keys in query){
+    const filteredData = data.filter(item => {
+        for (let keys in query) {
 
-                if(query[keys]===undefined) return false;
-                else if(!query[keys].includes(item[keys])) return false;
-
+            if (query[keys] === undefined) return false;
+            else if (keysHavingMinMax.includes(keys)) {
+                if (query[keys]['min'] !== null && item[keys] < query[keys]['min']) {
+                    return false;
+                }
+                if (query[keys]['max'] !== null && item[keys] > query[keys]['max']) {
+                    return false;
+                }
             }
-            return true;
+            else if (!query[keys].includes(item[keys])) return false;
+
+        }
+        return true;
 
     });
 

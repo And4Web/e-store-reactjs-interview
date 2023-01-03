@@ -23,12 +23,12 @@ const Sidebar = () => {
         }
 
         setFilter(tmpFilter);
-        
-        if(tmpFilter.categoryId.length>0)
-        dispatch(actions.applyFilter(tmpFilter, product));
+
+        if (tmpFilter.categoryId.length > 0)
+            dispatch(actions.applyFilter(tmpFilter, product));
         else
-        dispatch(actions.applyFilter(null, product))
-        
+            dispatch(actions.applyFilter(null, product))
+
         console.log(tmpFilter);
     }
 
@@ -48,8 +48,8 @@ const Sidebar = () => {
         }
         setCategoryFilter(categories);
 
-      
-            applyFilter(categories);
+
+        applyFilter(categories);
 
     }
 
@@ -76,7 +76,12 @@ const Sidebar = () => {
                                                         <li key={ind}>
                                                             {/* <a href={null} onClick={()=>applyFilter(subitem)}>{subitem.Name} </a> */}
                                                             <div className="form-check">
-                                                                <input type="checkbox" value={subitem.Id} name={subitem.Name} className="form-check-input" onChange={(e) => checkboxchange(e, subitem)}></input>
+                                                                <input type="checkbox" 
+                                                                value={subitem.Id} 
+                                                                name={subitem.Name} className="form-check-input" 
+                                                                onChange={(e) => checkboxchange(e, subitem)}
+                                                                checked = {categoryFilter.find(x=>x.Id===subitem.Id)?true:false}
+                                                                ></input>
                                                                 <label className="form-check-label" style={{ color: '#000' }} >{subitem.Name}</label>
                                                             </div>
                                                         </li>
@@ -92,6 +97,57 @@ const Sidebar = () => {
                     })
                 }
             </div>
+
+            <div className="sidebar_category">
+                <div className="section-title">
+                    <h4>Shop by price</h4>
+                </div>
+                <div>
+                    {`Price : $${filter?.price?.min || 0}-$${filter?.price?.max || 0}`}
+                    <div>
+                        <p>
+                            {`Min: `}
+                            <input type="range" id="min" min={1} max={150} step={1}
+                                onChange={(e) => {
+                                    setFilter({
+                                        ...filter,
+                                        price: {
+                                            ...filter.price,
+                                            min: parseInt(e.target.value)
+                                        }
+                                    })
+
+                                    console.log(filter);
+
+                                }} />
+                        </p>
+                        <p>
+                            {`Max: `}
+                            <input type="range" id="max" min={1} max={150} step={1} onChange={(e) => {
+                                setFilter({
+                                    ...filter,
+                                    price: {
+                                        ...filter.price,
+                                        max: parseInt(e.target.value)
+                                    }
+                                })
+
+                                console.log(filter);
+
+                            }} />
+                        </p>
+                    </div>
+                    <button className="btn-sidebar" onClick={() => dispatch(actions.applyFilter(filter, product))}>{"Apply prices"}</button>
+                    <button className="btn-sidebar" onClick={() => {
+                        setFilter({});
+                        setCategoryFilter([]);
+                        dispatch(actions.applyFilter(null, product));
+                    }}>{"Remove all filters"}</button>
+                </div>
+
+            </div>
+
+
         </div>
     )
 }
