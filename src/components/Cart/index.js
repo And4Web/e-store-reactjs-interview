@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../redux/actions";
 
@@ -7,6 +7,7 @@ import * as actions from "../../redux/actions";
 const Cart = (props) => {
 
     const { cart } = useSelector(obj => obj);
+    const userdetails = JSON.parse(sessionStorage.getItem("userdetails"));
     const dispatch = useDispatch();
 
     const updateCart = (product, op) => {
@@ -17,6 +18,36 @@ const Cart = (props) => {
         dispatch(actions.addCartItem(tempProduct));
 
     };
+
+    const paymentClick = () => {
+
+        const txnID = Math.random().toString().split(".")[1];
+
+        let orderInfo = {
+            user: 'Guest',
+            product: JSON.stringify(cart.item.map(x => {
+                return { name: x.name, price: x.price, quantity: x.quantity }
+            }))
+        }
+
+        let payRequest = {};
+        payRequest = {
+            amount: parseFloat(cart.itemPriceTotal),
+            txnid: txnID,
+            productinfo: JSON.stringify(orderInfo),
+            firstname: 'Guest',
+            email: 'andpmedia1@gmail.com',
+            phone: '9990625516',
+            lastname: ''
+
+        }
+
+        dispatch(actions.payment(payRequest));
+
+
+
+    }
+
     return (
         <div className="container">
             <div className="row">
@@ -64,11 +95,6 @@ const Cart = (props) => {
                         </tbody>
                     </table>
                 </div>
-
-
-
-
-
             </div>
             <div className="row">
                 <div className="col-lg-6 col-md-6">
@@ -83,7 +109,18 @@ const Cart = (props) => {
                             Total : <span>{`$ ${parseFloat(cart.itemPriceTotal).toFixed(2)}`}</span>
                         </li>
                         </ul>
-                        <btn className="btn btn-warning">{`Proceed To Checkout`}</btn>
+                        {userdetails ?
+                            (<btn className="btn btn-warning" onClick={() => paymentClick()}>{`Proceed To Checkout`}</btn>
+                            )
+                            :
+                            (
+                                <NavLink className="btn btn-warning"
+                                    to={{
+                                        pathname: "/login",
+                                        state: { redirectto: "/estore/viewcart" }
+                                    }}>{`Proceed To Checkout`}</NavLink>
+                            )
+                        }
                     </div>
                 </div>
             </div>

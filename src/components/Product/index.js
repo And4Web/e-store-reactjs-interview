@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import * as actions from "../../redux/actions";
 
 import "./_product.scss";
@@ -56,10 +56,10 @@ const Product = () => {
                         <div className="product__item__text">
                             <h6>
 
-                                <Link to={{
-                                    pathname: "/productdetails",
+                                <NavLink to={{
+                                    pathname: "/estore/productdetails",
                                     state: item
-                                }}>{item.name}</Link>
+                                }}>{item.name}</NavLink>
                             </h6>
                             <div className="rating">
                                 <i className="fa fa-star" />

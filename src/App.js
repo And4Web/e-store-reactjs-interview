@@ -5,18 +5,20 @@ import './App.css';
 import LandingPage from './components';
 import ProductDetails from './components/Product/productDetails';
 import Cart from './components/Cart';
+import PaymentResponse from "./components/Cart/paymentResponse";
+// import Login from './components/Login';
 
 function App() {
   return (
     <>
-      <Header />
-      <section style={{marginTop:10}}>
-        <Routes>
-          <Route exact path="/" element={<LandingPage/>} />
-          <Route exact path="/productdetails" element={<ProductDetails/>} />
-          <Route exact path="/viewcart" element={<Cart/>}/>
-        </Routes>
-      </section>
+      <Routes>
+        <Route path="/" element={<LandingPage/>} />
+        {/* <Route exact path="/productdetails" component={ProductDetails} />
+          <Route exact path="/viewcart" component={Cart}/>
+          <Route exact path="/paymentresponse" component={PaymentResponse}/> */}
+        {/* <Route exact path="/" element={<Login/>} /> */}
+      </Routes>
+
     </>
   );
 }
